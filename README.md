@@ -4,7 +4,7 @@ keyframes.less fork
 The purpose of this fork is to modify thybzi/keyframes to improve generation of coordinated multi-element animations that all occur over a single animation.  
 This is an example of how creating an animation should work:
 ```less
-@mariojump-length: 3;
+@mariojump-total-frames: 3;
 
 .keyframes-item(marioJumpMario, 0) {
     bottom: 0px;
@@ -18,15 +18,19 @@ This is an example of how creating an animation should work:
 .keyframes-item(marioJumpBox, 2) {
     background-color: red;
 }
-.keyframes-item(marioJumpMario, @animation1-length) {
+.keyframes-item(marioJumpMario, @animation1-total-frames) {
     bottom: 0px;
 }
 
-.keyframes(marioJumpMario, @animation1-length);
-.keyframes(marioJumpBox, @animation1-length);
+.keyframes(marioJumpMario, @animation1-total-frames);
+.keyframes(marioJumpBox, @animation1-total-frames);
 
+@mariojump-length: 1s;
 .mario {
-    .animation(marioJumpMario 1s);
+    .animation(marioJumpMario, @mariojump-length);
+}
+.box {
+    .animation(marioJumpBox, @mariojump-length);
 }
 ```
 
